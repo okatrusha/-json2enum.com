@@ -1,0 +1,68 @@
+<html>  
+  <head>
+    <title>Convert JSON to Enum online for free</title>
+    <meta name="description" content="Free online tool to convert JSON file to enumeration. Easy was to list all values from JSON as a string.">
+    <meta name="keywords" content="JSON, Enum, Fetch values from JSON, JSON to list, JSON to string, Convert JSON, JSON 2 Enum, JSON to Enum">
+    <meta name="author" content="Oleksandr Katrusha">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGMSB6X6EV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WGMSB6X6EV');
+    </script>    
+  </head>
+  <body>
+    <h1 align = center>Convert JSON to Enum online.</h1>    
+    <form id="jsonInputForm" align = center>
+      Source JSON : <br />
+      <textarea rows = "25" cols = "120" name = "description" id="jsonInputArea">
+[
+  {"Day":"Monday","Time":"8:00"},
+  {"Day":"Tuesday","Time":"8:00"},
+  {"Day":"Wednesday","Time":"8:00"},
+  {"Day":"Thursday","Time":"8:00"},
+  {"Day":"Friday","Time":"8:00"},
+  {"Day":"Saturday","Time":"11:00"},
+  {"Day":"Sunday","Time":"11:00"}
+]           
+      </textarea>
+      <br>
+      <br />
+      <button id="ajaxButton" type="button">Convert to Enum</button>
+   </form>
+   
+
+   <form id="jsonOutputForm" align = center>
+    Enum : <br />
+    <textarea rows = "15" cols = "120" name = "description" id="jsonOutputArea">
+    </textarea>
+   </form>
+
+<script>
+  (function() {
+    document.getElementById("ajaxButton").addEventListener('click', convert2Enum);
+    
+    function convert2Enum() {
+    
+      const json_text = document.getElementById("jsonInputArea").value;
+      try{
+        var parsedJson = JSON.parse(json_text);
+
+        Result = Object.keys(parsedJson[0]).reduce((acc, key) => {
+        acc[key] = parsedJson.map(item => item[key])
+        return acc
+        }, {})    
+        document.getElementById("jsonOutputArea").value = JSON.stringify(Result,undefined, 4);
+      } catch (error) {
+        document.getElementById("jsonOutputArea").value = error;
+}
+
+    }
+  }
+)();
+
+</script>
+  </body>
+</html>
